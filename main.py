@@ -1,6 +1,8 @@
 import pygame
 import sys
 
+from bg import initialize_grid, create_random_path, GRID_SIZE, SCREEN_WIDTH, SCREEN_HEIGHT, BRICK, PATH
+
 # Initialize pygame
 pygame.init()
 
@@ -13,10 +15,16 @@ WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 LIGHT_BLUE = (173, 216, 230)  # Button color
 LIGHT_BLUE2 = (173, 200, 230)       # Hover color
+BRICK_COLOR = (139, 69, 19)
+PATH_COLOR = (173, 216, 230)
 
 # Set up display
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("Arrow Run")
+
+# Initialize the grid and create a random path
+grid = initialize_grid()
+create_random_path(grid)
 
 # Set up font
 font = pygame.font.Font(None, 28)
@@ -73,9 +81,12 @@ while running:
             screen.blit(text_surface, text_rect)
 
     elif game_play:
-        play_text = font.render("Playing the Game!", True, BLACK)
-        play_text_rect = play_text.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2))
-        screen.blit(play_text, play_text_rect)
+        for row in range(len(grid)):
+            for col in range(len(grid[row])):
+                color = BRICK_COLOR if grid[row][col] == BRICK else PATH_COLOR
+                pygame.draw.rect(screen, color, (col * GRID_SIZE, row * GRID_SIZE, GRID_SIZE, GRID_SIZE))
+
+    # Update display
         
     
     # Update display
