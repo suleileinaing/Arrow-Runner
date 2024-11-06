@@ -17,6 +17,11 @@ BLUE = (0, 0, 255)
 clock = pygame.time.Clock()
 FPS = 60
 
+# Images 
+arrow_img = pygame.image.load('Assets/arrow.png')
+arrow_img = pygame.transform.scale(arrow_img, (60, 50))
+
+
 # Game loop
 running = True
 while running:
@@ -27,12 +32,11 @@ while running:
 
     # Fill the screen with white
     window.fill(WHITE)
+    window.blit(arrow_img, (0,HEIGHT - 50))
 
-    # Update the display
-    pygame.display.flip()
-
-    # Cap the frame rate
     clock.tick(FPS)
+    pygame.display.update()
+
 
 # Quit Pygame
 pygame.quit()
