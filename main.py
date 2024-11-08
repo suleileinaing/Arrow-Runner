@@ -1,6 +1,6 @@
 import pygame
 import sys
-from objects import Arrow
+from objects import Arrow, Grass, Path
 import constant as c
 
 # Initialize Pygame
@@ -20,6 +20,9 @@ clock = pygame.time.Clock()
 FPS = 60
 
 arrow = Arrow()
+grass = Grass()
+path = Path()
+
 
 # Game loop
 running = True
@@ -54,6 +57,18 @@ while running:
 
     # Fill the screen with white
     window.fill(WHITE)
+
+    ## from here is test,
+    grass_pts = []
+    for i in range (16):
+        for j in range (12):
+            grass_pts.append((i*50, j*50))
+
+    for (x,y) in grass_pts:
+        if (x,y) not in path.coordinate:
+            grass.draw(window, x,y)
+
+    ## test ened
     arrow.draw(window)
 
     clock.tick(FPS)

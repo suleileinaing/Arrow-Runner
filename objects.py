@@ -1,5 +1,6 @@
 import pygame
 import constant as c
+import random
 
 class Arrow():
     def __init__(self):
@@ -38,3 +39,34 @@ class Arrow():
 
     def draw(self, window):
         window.blit(self.arrow, (self.x, self.y))
+
+class Grass():
+    def __init__(self):
+        self.width = 50
+        self.height =  50
+        self.image = pygame.image.load('Assets/grass.png')
+        self.image = pygame.transform.scale(self.image, (self.width, self.height))
+        
+    def draw(self, window, x, y):
+        window.blit(self.image, (x, y))
+
+class Path():
+    def __init__(self):
+        self.width = 50
+        self.height = 50
+        self.coordinate = []
+
+        current= (0, c.HEIGHT-self.height)
+        end = (c.WIDTH - self.width,0 )
+        self.coordinate.append(current)
+        while current!= end:
+            randint = random.randint (0,1)
+            if current[0] == end[0]:
+                new = (current[0], current[1]-50)
+            if randint == 0 and current[0] != end[0]:
+                new = (current[0]+50, current[1])
+            else:
+                new = (current[0], current[1]-50)
+            current = new 
+            self.coordinate.append(current)
+
