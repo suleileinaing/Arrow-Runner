@@ -56,6 +56,8 @@ class Path():
         self.height = 50
         self.coordinate = []
 
+    def Random(self):
+        self.coordinate.clear()
         current= (0, c.HEIGHT-self.height)
         end = (c.WIDTH - self.width,0 )
         self.coordinate.append(current)
@@ -69,4 +71,10 @@ class Path():
                 new = (current[0], current[1]-50)
             current = new 
             self.coordinate.append(current)
+
+    def Level1(self):
+        self.coordinate = c.Level1_path
+
+    
+
 

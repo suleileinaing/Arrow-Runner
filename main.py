@@ -22,7 +22,7 @@ FPS = 60
 arrow = Arrow()
 grass = Grass()
 path = Path()
-
+path.Level1()
 
 # Game loop
 running = True
@@ -33,38 +33,33 @@ while running:
             running = False
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RIGHT:
-                if arrow.right:
+                if arrow.right and (arrow.x + arrow.width , arrow.y) in path.coordinate:
                     arrow.x += arrow.width
-                else :
+                else:
                     arrow.Arrow_Right()
             if event.key == pygame.K_LEFT:
-                if arrow.left:
+                if arrow.left and (arrow.x - arrow.width , arrow.y) in path.coordinate:
                     arrow.x -= arrow.width
-                else :
+                else:
                     arrow.Arrow_Left()
 
             if event.key == pygame.K_UP:
-                if arrow.up:
+                if arrow.up and (arrow.x , arrow.y - arrow.height) in path.coordinate:
                     arrow.y -= arrow.height
-                else :
+                else:
                     arrow.Arrow_Up()
 
             if event.key == pygame.K_DOWN:
-                if arrow.down:
+                if arrow.down and (arrow.x, arrow.y + arrow.height) in path.coordinate:
                     arrow.y += arrow.height
-                else :
+                else:
                     arrow.Arrow_Down()
 
     # Fill the screen with white
     window.fill(WHITE)
 
     ## from here is test,
-    grass_pts = []
-    for i in range (16):
-        for j in range (12):
-            grass_pts.append((i*50, j*50))
-
-    for (x,y) in grass_pts:
+    for (x,y) in c.grass_pts:
         if (x,y) not in path.coordinate:
             grass.draw(window, x,y)
 
