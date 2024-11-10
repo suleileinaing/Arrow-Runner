@@ -1,5 +1,21 @@
+import pygame
+
 WIDTH, HEIGHT = 800, 600
 
+#colors 
+
+WHITE = (255, 255, 255)
+BLACK = (0,0,0)
+BLUE = (0, 0, 255)
+BROWN = (139,69,19)
+SANDY = (244, 164, 96)
+
+#font
+pygame.font.init()
+font_small = pygame.font.Font("font/Gomino.otf", 24)
+font_large = pygame.font.Font("font/Gomino.otf", 74)
+
+#path
 grass_pts = []
 for i in range (16):
     for j in range (12):
