@@ -58,22 +58,6 @@ class Path():
         self.coordinate = c.Level1_path
         self.level = 1
 
-    def Random(self):
-        self.coordinate.clear()
-        current= (0, c.HEIGHT-self.height)
-        end = (c.WIDTH - self.width,0 )
-        self.coordinate.append(current)
-        while current!= end:
-            randint = random.randint (0,1)
-            if current[0] == end[0]:
-                new = (current[0], current[1]-50)
-            if randint == 0 and current[0] != end[0]:
-                new = (current[0]+50, current[1])
-            else:
-                new = (current[0], current[1]-50)
-            current = new 
-            self.coordinate.append(current)
-
     def LevelUp(self):
         self.level += 1
 
